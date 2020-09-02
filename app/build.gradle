@@ -49,6 +49,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //implementation 'com.google.firebase:firebase-crashlytics:17.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -104,4 +105,15 @@ dependencies {
 
     // google services
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+
+    // Koin for Android
+    def koin_version = "2.1.6"
+    implementation "org.koin:koin-android:$koin_version"
+
+    // Koin Android Scope feature
+    implementation "org.koin:koin-android-scope:$koin_version"
+
+    // Koin Android ViewModel feature
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }
