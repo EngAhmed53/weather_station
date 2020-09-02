@@ -1,7 +1,8 @@
-package com.shouman.apps.weatherstation
+package com.shouman.apps.weatherstation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.shouman.apps.weatherstation.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
