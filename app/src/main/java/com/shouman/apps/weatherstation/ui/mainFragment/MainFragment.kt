@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.shouman.apps.weatherstation.R
 
 class MainFragment : Fragment() {
@@ -20,6 +21,10 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        viewModel.init()
+
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
