@@ -3,17 +3,21 @@ package com.shouman.apps.weatherstation.repository
 import androidx.lifecycle.Transformations
 import com.shouman.apps.reseller.admin.data.database.WeatherDatabase
 import com.shouman.apps.weatherstation.data.model.PreferenceCurrentCondition
+import com.shouman.apps.weatherstation.data.model.PreferenceLocation
 import com.shouman.apps.weatherstation.data.preferences.SharedPreferenceLiveData
 import com.shouman.apps.weatherstation.data.preferences.UserPreferences
 
 class MainRepository(
     weatherDatabase: WeatherDatabase,
-    userPreferences: UserPreferences
+    private val userPreferences: UserPreferences
 ) {
 
-    private val MAX_TIME_LIMIT: Long = 1800000L
+//    private val MAX_TIME_LIMIT: Long = 1800000L
 
-    val locationLiveData = SharedPreferenceLiveData(userPreferences, userPreferences.LOCATION_KEY)
+    val locationLiveData = Transformations.map(
+        SharedPreferenceLiveData(userPreferences, userPreferences.LOCATION_KEY)){
+        it as? PreferenceLocation
+    }
 
     val next5DaysData = weatherDatabase.weatherDAO.getNext5DaysCondition()
 
@@ -32,5 +36,18 @@ class MainRepository(
 //        }
 
         it as? PreferenceCurrentCondition
+    }
+
+    fun updateLocation(preferenceLocation: PreferenceLocation?) {
+        preferenceLocation?.let {
+            userPreferences.saveLocation(preferenceLocation)
+            //start task to update current condition and all data
+        }
+    }
+
+    fun updateCurrentCondition(currentCondition: PreferenceCurrentCondition?) {
+        currentCondition?.let {
+            userPreferences.saveCurrentCondition(currentCondition)
+        }
     }
 }

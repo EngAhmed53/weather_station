@@ -1,13 +1,12 @@
 package com.shouman.apps.weatherstation.ui.mainFragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import com.shouman.apps.weatherstation.R
+import androidx.fragment.app.Fragment
+import com.shouman.apps.weatherstation.databinding.MainFragmentBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
@@ -15,17 +14,23 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val mMainViewModel: MainViewModel by viewModel()
+//    private val locationViewModel: LocationViewModel by viewModel()
+
+    private lateinit var mBinding: MainFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mBinding = MainFragmentBinding.inflate(inflater)
 
-        viewModel.init()
+        mBinding.apply {
+            lifecycleOwner = this@MainFragment
+            mainViewModel = mMainViewModel
+        }
 
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return mBinding.root
     }
 
 }

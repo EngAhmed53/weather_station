@@ -30,7 +30,6 @@ class UserPreferences(val sharedPreferences: SharedPreferences) {
         return gson.fromJson(preferenceLocationString, PreferenceLocation::class.java)
     }
 
-
     fun saveCurrentCondition(currentCondition: PreferenceCurrentCondition) {
 
         val gson = Gson()

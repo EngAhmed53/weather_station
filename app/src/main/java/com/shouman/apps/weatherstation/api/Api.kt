@@ -63,9 +63,9 @@ interface LocationApiServices {
     fun getCurrentLocationAsync(
         @Query("apikey") apiKey: String,
         @Query("q") latLong: String,
-        @Query("details") requireDetails: Boolean,
-        @Query("toplevel") onlyTopLevel: Boolean
-    ): Deferred<Location>
+        @Query("details") requireDetails: Boolean = false,
+        @Query("toplevel") onlyTopLevel: Boolean = true
+    ): Deferred<Location?>
 }
 
 

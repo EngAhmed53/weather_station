@@ -5,6 +5,7 @@ import com.shouman.apps.weatherstation.diModules.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class WeatherApplication : Application() {
 
@@ -12,7 +13,7 @@ class WeatherApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger()
+            androidLogger(Level.ERROR)
             androidContext(this@WeatherApplication)
             modules(appModule)
         }
