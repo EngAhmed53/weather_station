@@ -1,6 +1,7 @@
 package com.shouman.apps.weatherstation.data.model
 
 import com.shouman.apps.weatherstation.api.networkModel.Location
+import com.shouman.apps.weatherstation.data.preferences.IPreference
 import java.io.Serializable
 
 
@@ -12,7 +13,7 @@ data class PreferenceLocation(
     val country: String,
 
     val city: String
-) : Serializable
+) : Serializable, IPreference
 
 
 fun Location.toPreferenceLocation(): PreferenceLocation {

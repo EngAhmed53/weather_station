@@ -1,6 +1,7 @@
 package com.shouman.apps.weatherstation.data.model
 
 import com.shouman.apps.weatherstation.api.networkModel.CurrentTemp
+import com.shouman.apps.weatherstation.data.preferences.IPreference
 import java.io.Serializable
 
 data class PreferenceCurrentCondition(
@@ -12,7 +13,7 @@ data class PreferenceCurrentCondition(
     val temp: Double,
 
     val updateTime: Long
-) : Serializable
+) : Serializable, IPreference
 
 
 fun CurrentTemp.toPreferenceCurrentCondition(updateTime: Long): PreferenceCurrentCondition {
